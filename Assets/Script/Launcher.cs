@@ -8,13 +8,14 @@ public class Launcher : MonoBehaviour
     void Start()
     {
         //InvokeRepeating ( 함수 이름, 초기지연 시간, 지연할 시간 )
-        InvokeRepeating("Shoot", 0.5f, 1f);
+        InvokeRepeating("Shoot", 1f, 0.1f);
     }
 
     void Shoot()
     {
         //미사일 프리팹, 런쳐포지션, 방향값 없음
         Instantiate(bullet, transform.position, Quaternion.identity);
+
     }
     void Update()
     {
