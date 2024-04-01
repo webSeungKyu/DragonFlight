@@ -434,7 +434,7 @@ Transform:
   m_GameObject: {fileID: 767423463}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 4.67, z: 0}
+  m_LocalPosition: {x: -2, y: 4.67, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1174,6 +1174,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bullet: {fileID: 6707635324490563089, guid: 3c992b0069990944cad3f82133076a76, type: 3}
+  shotSound: {fileID: 8300000, guid: f3279a2411b824045b3b372b6cfa34e0, type: 3}
 --- !u!1 &1795759981
 GameObject:
   m_ObjectHideFlags: 0
