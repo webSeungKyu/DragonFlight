@@ -172,3 +172,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 4.2
+  effect: {fileID: 2504214343621411470, guid: f4a037706d64b4946b287ceaa23b0bc8, type: 3}

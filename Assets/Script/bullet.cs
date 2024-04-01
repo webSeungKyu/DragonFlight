@@ -5,6 +5,7 @@ using UnityEngine;
 public class bullet : MonoBehaviour
 {
     public float moveSpeed = 4.2f;
+    public GameObject effect;
     void Start()
     {
         
@@ -37,7 +38,7 @@ public class bullet : MonoBehaviour
         /*if(collision.gameObject.tag == "Enemy")*/
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            
+            Instantiate(effect, collision.gameObject.transform.position, Quaternion.identity);
             //적 지우기
             Destroy(collision.gameObject);
 
