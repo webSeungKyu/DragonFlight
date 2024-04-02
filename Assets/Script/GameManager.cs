@@ -61,8 +61,9 @@ public class GameManager : MonoBehaviour
         for(int i = 0; i < s.Length; i++)
         {
             bossText.text += s[i];
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(0.5f);
         }
+        yield return new WaitForSeconds(1f);
         bossText.enabled = false;
     }
 

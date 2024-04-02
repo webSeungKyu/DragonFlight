@@ -43,7 +43,7 @@ public class SpawnManager : MonoBehaviour
         if (score > 1500 && enableSpawn == false && nomalSpawn == true)
         {
             Debug.Log("중간 보스 생성");
-            StartCoroutine("NomalSpawnStart");
+            
         }
 
 
@@ -54,31 +54,29 @@ public class SpawnManager : MonoBehaviour
     {
         enableSpawn = true;
         InvokeRepeating("SpawnEnemy", 3, 3f);
+        StartCoroutine("NomalSpawnStart"); //15초 뒤에 중간 보스
+        Invoke("BossSpawn", 30f); //30초 뒤에 보스
     }
 
 
-    void Update()
-    {
-        if (bossSpawn)
-        {
-            Debug.Log("보스 생성 예정");
-            GameManager.Instance.StartCoroutine("BossText");
-            Invoke("BossSpawn", 9.7f);
-            bossSpawn = false;
-        }
-    }
 
     IEnumerator NomalSpawnStart()
     {
+        yield return new WaitForSeconds(15f);
         int num = 0;
-        while (num < 3)
+        while (num < 5)
         {
             int ran = Random.Range(0, nomalList.Count);
             Instantiate(nomalList[ran], nomalList[ran].transform.position, Quaternion.identity);
             yield return new WaitForSeconds(3f);
             num++;
+            if(num == 3)
+            {
+                GameManager.Instance.StartCoroutine("BossText");
+            }
         }
-        yield return new WaitForSeconds(3f);
+        
+        yield return new WaitForSeconds(2f);
         nomalSpawn = false;
         bossSpawn = true;
 
@@ -87,6 +85,7 @@ public class SpawnManager : MonoBehaviour
 
     public void BossSpawn()
     {
+        
         Instantiate(boss, boss.transform.position, Quaternion.identity);
         bossSpawn = false;
     }
