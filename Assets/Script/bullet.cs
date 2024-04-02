@@ -6,10 +6,9 @@ public class bullet : MonoBehaviour
 {
     public float moveSpeed = 9.7f;
     public GameObject effect;
-    void Start()
-    {
-        
-    }
+    public GameObject effect2;
+    public GameObject effect3;
+
 
     void Update()
     {
@@ -49,7 +48,27 @@ public class bullet : MonoBehaviour
             //미사일 지우기
             Destroy(gameObject);
 
+        }else if (collision.gameObject.CompareTag("Finish"))
+        {
+            GameManager.Instance.bossAttack();
+
+            Instantiate(effect2, transform.position, Quaternion.identity);
+            Destroy(gameObject);
+        }else if (collision.gameObject.CompareTag("NomalEnemy"))
+        {
+            //이펙트
+            Instantiate(effect3, collision.gameObject.transform.position, Quaternion.identity);
+            //사운드
+            SoundManager.instance.SoundDie();
+            //적 지우기
+            Destroy(collision.gameObject);
+            //점수 추가
+            GameManager.Instance.AddScore(100);
+            //미사일 지우기
+            Destroy(gameObject);
         }
+
+
     }
 
 }

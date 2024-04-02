@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Data.SqlTypes;
+using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,6 +14,7 @@ public class GameManager : MonoBehaviour
     public Text bossText;
 
     public int score = 0;
+    public int bossHp = 200;
 
     private void Awake()
     {
@@ -32,9 +34,38 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void bossAttack()
+    {
+        bossHp--;
+        if (bossHp <= 100 && bossHp >= 50)
+        {
+            Debug.Log(bossHp);
+            GameObject boss = GameObject.FindGameObjectWithTag("Finish");
+            Color bossColor = boss.GetComponent<SpriteRenderer>().color;
+            bossColor = new Color(bossColor.r, bossColor.g - 0.1f, bossColor.b - 0.1f, bossColor.a);
+            boss.GetComponent<SpriteRenderer>().color = bossColor;
+        }
+        if (bossHp < 20)
+        {
+            Debug.Log(bossHp);
+            GameObject boss = GameObject.FindGameObjectWithTag("Finish");
+            Color bossColor = boss.GetComponent<SpriteRenderer>().color;
+            bossColor = new Color(bossColor.r - 0.1f, bossColor.g + 0.1f, bossColor.b + 0.1f, bossColor.a - 1);
+            boss.GetComponent<SpriteRenderer>().color = bossColor;
+
+        }
+        if (bossHp <= 0)
+        {
+            
+        }
+
+    }
+
+
     void Start()
     {
         StartCoroutine("StartGame");
+
     }
 
     IEnumerator StartGame()
@@ -57,7 +88,7 @@ public class GameManager : MonoBehaviour
 
     IEnumerator BossText()
     {
-        string s = "보스\n주의";
+        string s = "보스\n출현";
         for(int i = 0; i < s.Length; i++)
         {
             bossText.text += s[i];

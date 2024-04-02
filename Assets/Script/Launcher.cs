@@ -9,10 +9,22 @@ public class Launcher : MonoBehaviour
     private AudioSource soundPlayer;*/
     void Start()
     {
+        bullet.GetComponent<SpriteRenderer>().color = Color.white;
+        //총 색 변경
+        Invoke("ChangeBullet", 20f);
+
+
         /*soundPlayer = GetComponent<AudioSource>();*/
         //InvokeRepeating ( 함수 이름, 초기지연 시간, 지연할 시간 )
         InvokeRepeating("Shoot", 3f, 0.119f);
+        
 
+    }
+
+    void ChangeBullet()
+    {
+        //총 색 변경
+        bullet.GetComponent<SpriteRenderer>().color = new Color(0, 255, 255, 255);
     }
 
     void Shoot()
