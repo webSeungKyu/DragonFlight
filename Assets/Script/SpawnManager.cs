@@ -33,7 +33,7 @@ public class SpawnManager : MonoBehaviour
 
     void Start()
     {
-        InvokeRepeating("SpawnEnemy", 1, 3f);
+        InvokeRepeating("SpawnEnemy", 3, 3f);
     }
 
 

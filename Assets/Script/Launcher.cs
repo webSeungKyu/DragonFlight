@@ -11,7 +11,7 @@ public class Launcher : MonoBehaviour
     {
         /*soundPlayer = GetComponent<AudioSource>();*/
         //InvokeRepeating ( 함수 이름, 초기지연 시간, 지연할 시간 )
-        InvokeRepeating("Shoot", 1f, 0.42f);
+        InvokeRepeating("Shoot", 3f, 0.119f);
 
     }
 
