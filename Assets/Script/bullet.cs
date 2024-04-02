@@ -38,7 +38,10 @@ public class bullet : MonoBehaviour
         /*if(collision.gameObject.tag == "Enemy")*/
         if (collision.gameObject.CompareTag("Enemy"))
         {
+            //이펙트
             Instantiate(effect, collision.gameObject.transform.position, Quaternion.identity);
+            //사운드
+            SoundManager.instance.SoundDie();
             //적 지우기
             Destroy(collision.gameObject);
 
