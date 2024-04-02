@@ -7,7 +7,10 @@ public class SpawnManager : MonoBehaviour
     public bool enableSpawn = false; // 생성 On/Off
     //public GameObject enemy; // prefab으로 만든 적을 가져온다
     public List<GameObject> enemyList;
+    public bool nomalSpawn = false;
+    public List<GameObject> nomalList;
 
+    int score;
     public void SpawnEnemy()
     {
         /* 랜덤 생성
@@ -21,10 +24,24 @@ public class SpawnManager : MonoBehaviour
         */
         if (enableSpawn)
         {
+            score = GameManager.Instance.score;
+            if(score > 1500)
+            {
+                enableSpawn = false;
+                Debug.Log("1500점 넘었으므로 적 생성 중단");
+                nomalSpawn = true;
+            }
+
             for(int i = 0; i < enemyList.Count; i++)
             {
                 Instantiate(enemyList[i], new Vector2(transform.position.x + i, transform.position.y), Quaternion.identity);
             }
+
+        }
+        if (score > 1500 && enableSpawn == false && nomalSpawn == true)
+        {
+            Debug.Log("중간 보스 생성");
+            StartCoroutine("NomalSpawnStart");
         }
 
 
@@ -33,12 +50,28 @@ public class SpawnManager : MonoBehaviour
 
     void Start()
     {
+        enableSpawn = true;
         InvokeRepeating("SpawnEnemy", 3, 3f);
     }
 
 
     void Update()
     {
-        
+
+    }
+
+    IEnumerator NomalSpawnStart()
+    {
+        int num = 0;
+        while (num < 3)
+        {
+            int ran = Random.Range(0, nomalList.Count);
+            Instantiate(nomalList[ran], nomalList[ran].transform.position, Quaternion.identity);
+            yield return new WaitForSeconds(3f);
+            num++;
+        }
+        yield return new WaitForSeconds(3f);
+        nomalSpawn = false;
+
     }
 }

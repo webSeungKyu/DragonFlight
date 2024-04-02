@@ -230,6 +230,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoreText: {fileID: 1316319695}
+  startText: {fileID: 865324945}
+  score: 0
 --- !u!4 &125274399
 Transform:
   m_ObjectHideFlags: 0
@@ -653,13 +655,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62619f2514dd9be4faade35cd1f716ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enableSpawn: 1
+  enableSpawn: 0
   enemyList:
   - {fileID: 7078819788919755845, guid: 0d116cf7041931f44875566da3f4e2fb, type: 3}
   - {fileID: 7078819788919755845, guid: 0d116cf7041931f44875566da3f4e2fb, type: 3}
   - {fileID: 7078819788919755845, guid: 0d116cf7041931f44875566da3f4e2fb, type: 3}
   - {fileID: 7078819788919755845, guid: 0d116cf7041931f44875566da3f4e2fb, type: 3}
   - {fileID: 7078819788919755845, guid: 0d116cf7041931f44875566da3f4e2fb, type: 3}
+  nomalSpawn: 0
+  nomalList:
+  - {fileID: 6279203726845890725, guid: 74188385697301f439e8c22438da4a71, type: 3}
+  - {fileID: 5260266936033418260, guid: 09fd2a8484a726b4d9e1903d856769ff, type: 3}
+  - {fileID: 2317480923746471422, guid: a8268ee9499017e4e95708dab70eeb27, type: 3}
 --- !u!4 &767423465
 Transform:
   m_ObjectHideFlags: 0

@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
     public Text scoreText;
     public Text startText;
 
-    int score = 0;
+    public int score = 0;
 
     private void Awake()
     {
@@ -24,6 +24,10 @@ public class GameManager : MonoBehaviour
     {
         score += num;
         scoreText.text = $"Score : {score.ToString()}";
+        if(score > 1500)
+        {
+            Debug.Log("1500Á¡ ÃÊ°ú");
+        }
     }
 
     void Start()
