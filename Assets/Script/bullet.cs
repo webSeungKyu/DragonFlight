@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class bullet : MonoBehaviour
 {
-    public float moveSpeed = 4.2f;
+    public float moveSpeed = 9.7f;
     public GameObject effect;
     void Start()
     {
