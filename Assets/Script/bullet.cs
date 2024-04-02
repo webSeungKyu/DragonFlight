@@ -44,7 +44,8 @@ public class bullet : MonoBehaviour
             SoundManager.instance.SoundDie();
             //적 지우기
             Destroy(collision.gameObject);
-
+            //점수 추가
+            GameManager.Instance.AddScore(100);
             //미사일 지우기
             Destroy(gameObject);
 
