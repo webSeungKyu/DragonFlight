@@ -9,6 +9,8 @@ public class SpawnManager : MonoBehaviour
     public List<GameObject> enemyList;
     public bool nomalSpawn = false;
     public List<GameObject> nomalList;
+    public bool bossSpawn = false;
+    public GameObject boss;
 
     int score;
     public void SpawnEnemy()
@@ -25,14 +27,14 @@ public class SpawnManager : MonoBehaviour
         if (enableSpawn)
         {
             score = GameManager.Instance.score;
-            if(score > 1500)
+            if (score > 1500)
             {
                 enableSpawn = false;
                 Debug.Log("1500점 넘었으므로 적 생성 중단");
                 nomalSpawn = true;
             }
 
-            for(int i = 0; i < enemyList.Count; i++)
+            for (int i = 0; i < enemyList.Count; i++)
             {
                 Instantiate(enemyList[i], new Vector2(transform.position.x + i, transform.position.y), Quaternion.identity);
             }
@@ -57,7 +59,13 @@ public class SpawnManager : MonoBehaviour
 
     void Update()
     {
-
+        if (bossSpawn)
+        {
+            Debug.Log("보스 생성 예정");
+            GameManager.Instance.StartCoroutine("BossText");
+            Invoke("BossSpawn", 9.7f);
+            bossSpawn = false;
+        }
     }
 
     IEnumerator NomalSpawnStart()
@@ -72,6 +80,14 @@ public class SpawnManager : MonoBehaviour
         }
         yield return new WaitForSeconds(3f);
         nomalSpawn = false;
+        bossSpawn = true;
 
+
+    }
+
+    public void BossSpawn()
+    {
+        Instantiate(boss, boss.transform.position, Quaternion.identity);
+        bossSpawn = false;
     }
 }

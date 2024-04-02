@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Data.SqlTypes;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,6 +10,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
     public Text scoreText;
     public Text startText;
+    public Text bossText;
 
     public int score = 0;
 
@@ -52,5 +54,17 @@ public class GameManager : MonoBehaviour
 
         
     }
+
+    IEnumerator BossText()
+    {
+        string s = "보스\n주의";
+        for(int i = 0; i < s.Length; i++)
+        {
+            bossText.text += s[i];
+            yield return new WaitForSeconds(2f);
+        }
+        bossText.enabled = false;
+    }
+
 
 }
