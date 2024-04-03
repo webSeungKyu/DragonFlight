@@ -15,6 +15,8 @@ public class GameManager : MonoBehaviour
 
     public int score = 0;
     public int bossHp = 200;
+    public Image clear;
+    public Text clearText;
 
     private void Awake()
     {
@@ -22,6 +24,7 @@ public class GameManager : MonoBehaviour
         {
             Instance = this;
         }
+        
     }
 
     public void AddScore(int num)
@@ -56,16 +59,31 @@ public class GameManager : MonoBehaviour
         }
         if (bossHp <= 0)
         {
-            
+            GameObject boss = GameObject.FindGameObjectWithTag("Finish");
+            Destroy(boss);
+            clear.enabled = true;
+            clearText.enabled = true;
+            StartCoroutine("ClearText", "Game\nClear");
         }
 
+    }
+
+    IEnumerator ClearText(string str)
+    {
+        clearText.text = "";
+        for (int i = 0; i < str.Length; i++)
+        {
+            clearText.text += str[i];
+            yield return new WaitForSeconds(0.5f);
+        }
     }
 
 
     void Start()
     {
+        clear.enabled = false;
+        clearText.enabled = false;
         StartCoroutine("StartGame");
-
     }
 
     IEnumerator StartGame()
@@ -88,7 +106,7 @@ public class GameManager : MonoBehaviour
 
     IEnumerator BossText()
     {
-        string s = "보스\n출현";
+        string s = "보스\n주의";
         for(int i = 0; i < s.Length; i++)
         {
             bossText.text += s[i];
